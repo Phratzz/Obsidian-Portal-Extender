@@ -1,0 +1,23 @@
+form.custom .tag-custom-check-list label .custom.checkbox { border-color: #aeaeae !important; }
+form.custom .tag-custom-check-list label .custom.checkbox::before { color: transparent !important; }
+form.custom .tag-custom-check-list label[data-method="Add"] .custom.checkbox { border-color: #f8bd34 !important; }
+form.custom .tag-custom-check-list label[data-method="Add"] .custom.checkbox::before { color: #f8bd34 !important; }
+form.custom .tag-custom-check-list label[data-method="Sub"] .custom.checkbox { border-color: #e8313a !important; }
+form.custom .tag-custom-check-list label[data-method="Sub"] .custom.checkbox::before { color: #e8313a !important; }
+form.custom .tag-custom-check-list label[data-method="Add"] .custom.checkbox::before,
+form.custom .tag-custom-check-list label[data-method="Sub"] .custom.checkbox::before {
+	content: "\00d7";
+	color: #222;
+	position: absolute;
+	top: -50%;
+	left: 50%;
+	margin-top: 1px;
+	margin-left: -5px;
+}
+form.custom .underlined.custom-underlined .columns {
+	width: auto;
+	padding: 0 5px;
+	margin: 0 0.9375em;
+	transform: translateY(8px);
+	background: #f7f7f7;
+}
