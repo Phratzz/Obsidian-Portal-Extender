@@ -12,9 +12,9 @@ window.addEventListener("load", function() {
 		};
 		
 		/* Setup tags and tag-groups */
-		var $groups = new Array('Class', 'Archetype', 'Creature', 'Race', 'God', 'Job', 'Location', 'Sex');
+		var $groups = new Array('Class', 'Creature', 'Race', 'God', 'Job', 'Location', 'Sex');
 		var $tags = new Array();
-		
+	
 		$('.filter-options .tag-check-list .row div').each(function() {
 			$(this).children("label").each(function() {
 				$tags.push($(this));
