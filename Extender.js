@@ -78,7 +78,7 @@ window.addEventListener("load", function() {
 		});
 		
 		/* Isotope event */
-		var $grid = $('.character-list').isotope({ itemSelector: '.character-list-item-container' });
+		var $grid = $('.character-list').find('.character-list-item-container');
 		var $filters = {};
 		$.each($groups, function($groupKey, $groupValue) {
 			$filters[$groupValue] = {};
@@ -95,21 +95,18 @@ window.addEventListener("load", function() {
 			}
 			
 			customFilter($filters);
-			
-			$grid.isotope({ filter: '.show-in-filter:not(.hide-in-filter)' });
 			delete $filterGroup;
 			delete $filterElement;
 			delete $filterOption;
 		});
 		$('.custom-filter-options label input').on('change', function() {
 			customFilter($filters);
-			$grid.isotope({ filter: '.show-in-filter:not(.hide-in-filter)' });
 		});
 		$('#quick_search').on('keyup paste', function() {
 			customFilter($filters);
-			$grid.isotope({ filter: '.show-in-filter:not(.hide-in-filter)' });
 		});
 		
+		//$grid.isotope({ filter: '.show-in-filter:not(.hide-in-filter)' });
 		/* Custom isotope event */
 		function customFilter($filters) {
 			$('.character-list .character-list-item-container').each(function() {
@@ -200,6 +197,15 @@ window.addEventListener("load", function() {
 			delete $hasFilter;
 			delete $character;
 			delete $isSet;
+			
+			$grid.each(function() {
+				$(this).hide();
+				if($(this).hasClass("show-in-filter")) {
+					if(!$(this).hasClass("hide-in-filter")) {
+						$(this).show();
+					}
+				}
+			});
 		}
 		
 		delete $groups;
