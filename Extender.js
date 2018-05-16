@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
 			};
 			
 			/* Setup tags and tag-groups */
-			var $groups = new Array('Class', 'Creature', 'Race', 'God', 'Job', 'Location', 'Sex');
+			var $groups = new Array('Class', 'Creature', 'Race', 'Job', 'Location', 'Island', 'Gender');
 			var $tags = new Array();
 		
 			jQuery('.filter-options .tag-check-list .row div').each(function() {
