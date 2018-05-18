@@ -14,11 +14,15 @@ window.addEventListener("load", function() {
 			};
 			
 			/* Setup tags and tag-groups */
-			var $groups = new Array('Class', 'Creature', 'Race', 'Job', 'Location', 'Island', 'Gender');
+			var $groups = new Array();
 			var $tags = new Array();
 		
 			jQuery('.filter-options .tag-check-list .row div').each(function() {
 				jQuery(this).children("label").each(function() {
+					var $split = jQuery(this).children('input').data('tag').split(':');
+					if($split.length > 1 && $groups.indexOf($split[0]) == -1) {
+						$groups.push($split[0]);
+					}
 					$tags.push(jQuery(this));
 				});
 			});
