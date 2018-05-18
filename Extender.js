@@ -1,7 +1,7 @@
 window.addEventListener("load", function() {
 	jQuery(document).ready(function() {
 		var $segments = jQuery(location).attr('href').split("/").splice(0, 5);
-		if($segments.length == 4 && ($segments[3] == "characters" || $segments[3] == "characters#") {
+		if($segments.length == 4 && ($segments[3] == "characters" || $segments[3] == "characters#")) {
 			/* Extra Functions */
 			Array.prototype.clean = function(deleteValue) {
 				for (var i = 0; i < this.length; i++) {
