@@ -14,36 +14,31 @@ window.addEventListener("load", function() {
 			};
 			
 			/* Setup tags and tag-groups */
-			var $groups = new Array();
-			var $tags = new Array();
+			var $groups = new Object();
+			var $other = new Array();
 		
 			jQuery('.filter-options .tag-check-list .row div').each(function() {
 				jQuery(this).children("label").each(function() {
 					var $split = jQuery(this).children('input').data('tag').split(':');
-					if($split.length > 1 && $groups.indexOf($split[0]) == -1) {
-						$groups.push($split[0]);
+					if($split.length > 1) {
+						if($groups[$split[0]] == undefined) {
+							$groups[$split[0]] = new Array();
+						}
+						$groups[$split[0]].push(jQuery(this));
+					} else {
+						$other.push(jQuery(this));
 					}
-					$tags.push(jQuery(this));
 				});
 			});
 			
 			/* Insert category for each group */
 			var $filters = jQuery('.filter-options form.custom');
 			jQuery.each($groups, function($groupKey, $groupValue) {
-				$filters.append('<div class="row underlined custom-underlined"><div class="large-12 columns">' + $groupValue + '</div></div>');
-				$filters.append('<div class="tag-custom-check-list" filter="' + $groupValue + '"><div class="row"><div class="large-3 columns"></div><div class="large-3 columns"></div><div class="large-3 columns"></div><div class="large-3 columns"></div></div></div>');
+				$filters.append('<div class="row underlined custom-underlined"><div class="large-12 columns">' + $groupKey + '</div></div>');
+				$filters.append('<div class="tag-custom-check-list" filter="' + $groupKey + '"><div class="row"><div class="large-3 columns"></div><div class="large-3 columns"></div><div class="large-3 columns"></div><div class="large-3 columns"></div></div></div>');
 				
-				var $myTags = new Array();
-				jQuery.each($tags, function($tagKey, $tagValue) {
-					if($tagValue.children('input').data('tag').split(':')[0] == $groupValue) {
-						$myTags.push($tagValue);
-						delete $tags[$tagKey];
-					}
-				});
-				$tags.clean(undefined);
-				
-				var $myFilter = $filters.children('.tag-custom-check-list[filter="' + $groupValue + '"]');
-				jQuery.each($myTags, function($tagKey, $tagValue) {
+				var $myFilter = $filters.children('.tag-custom-check-list[filter="' + $groupKey + '"]');
+				jQuery.each($groupValue, function($tagKey, $tagValue) {
 					$myFilter.children('.row').children('.columns:nth-child(' + (($tagKey%4)+1) + ')').append($tagValue);
 				});
 			});
@@ -62,7 +57,7 @@ window.addEventListener("load", function() {
 			$filters.append('<div class="row underlined custom-underlined"><div class="large-12 columns">Other</div></div>');
 			$filters.append('<div class="tag-custom-check-list" filter="Other"><div class="row"><div class="large-3 columns"></div><div class="large-3 columns"></div><div class="large-3 columns"></div><div class="large-3 columns"></div></div></div>');
 			var $myFilter = $filters.children('.tag-custom-check-list[filter="Other"]');
-			jQuery.each($tags, function($tagKey, $tagValue) {
+			jQuery.each($other, function($tagKey, $tagValue) {
 				$myFilter.children('.row').children('.columns:nth-child(' + (($tagKey%4)+1) + ')').append($tagValue);
 			});
 			
@@ -87,7 +82,7 @@ window.addEventListener("load", function() {
 			var $grid = jQuery('.character-list').find('.character-list-item-container');
 			var $filters = {};
 			jQuery.each($groups, function($groupKey, $groupValue) {
-				$filters[$groupValue] = {};
+				$filters[$groupKey] = {};
 			});
 			$filters['Other'] = {};
 			
