@@ -21,3 +21,6 @@ form.custom .underlined.custom-underlined .columns {
 	transform: translateY(8px);
 	background: #f7f7f7;
 }
+.character-list-item-container {
+	clear: none !important;
+}
